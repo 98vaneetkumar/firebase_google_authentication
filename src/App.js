@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { useFirebase } from "./context/Firebase";
-import {GoogleAuthProvider,onAuthStateChanged} from "firebase/auth"
+import {GoogleAuthProvider,onAuthStateChanged,signOut} from "firebase/auth"
 
 function App() {
   const firebase = useFirebase();
@@ -18,6 +18,7 @@ function App() {
       } else {
         // User is signed out
         // ...
+        setUser(null)
       }
     });
   })
@@ -57,7 +58,7 @@ function App() {
       <div className="App">
         <h1>Hello {user.email}</h1>
         <h2>{uid}</h2>
-        {/* <button onClick={()=>signOut(auth)}>SignOut</button> */}
+        <button onClick={()=>signOut(auth)}>SignOut</button>
       </div>
     );
   }
